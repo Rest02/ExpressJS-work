@@ -18,9 +18,22 @@ const app = express()
 app.listen(3000)
 
 app.get("/", (req, res)=>{
-    res.sendFile("./static/index.html", {
-        root:__dirname
-    })
+    res.send("hello wrld")
 })
+
+app.get("/about", (req, res)=>{
+    res.send("About")
+})
+
+
+app.get("/weather", (req, res)=>{
+    res.send("The current wather is Nice")
+})
+
+app.use((req,res)=>{
+    res.status(404).send("No se encontro tu pagina")
+})
+
+
 
 console.log("server on port 3000")

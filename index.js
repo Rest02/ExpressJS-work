@@ -9,41 +9,33 @@
 // server.listen(3000)
 // console.log("server on port 3000")
 
+const express = require("express");
 
+const app = express();
 
-const express = require("express")
+app.get("/", (req, res) => {
+  res.send("hello world");
+});
 
-const app = express()
+app.get("/user", (req, res) => {
+  res.json({
+    name: "Fazt",
+    lastname: "ray",
+    age: 40,
+    points: [1, 2, 3],
+    address: {
+      city: "new york",
+      street: "some street 123",
+    },
+  });
+});
 
+app.get("/isAlive", (req, res) => {
+    res.sendStatus(200)
+  });
 
-app.get("/products", (req, res)=> {
-    res.send("lista de productos")
-})
-
-app.post("/products", (req, res)=> {
-    res.send("creando productos")
-})
-
-app.put("/products", (req, res)=> {
-    res.send("Actualizando producto")
-})
-
-app.delete("/products", (req, res)=> {
-    res.send("Borrando producto")
-})
-
-app.patch("/products", (req, res)=> {
-    res.send("Actualizando una parte del productos")
-})
-
-app.listen(3000)
-console.log("server on port 3000")
-
-
-
-
-
-
+app.listen(3000);
+console.log("server on port 3000");
 
 // app.get("/", (req, res)=>{
 //     res.send("hello wrld")
@@ -53,7 +45,6 @@ console.log("server on port 3000")
 //     res.send("About")
 // })
 
-
 // app.get("/weather", (req, res)=>{
 //     res.send("The current wather is Nice")
 // })
@@ -61,6 +52,3 @@ console.log("server on port 3000")
 // app.use((req,res)=>{
 //     res.status(404).send("No se encontro tu pagina")
 // })
-
-
-

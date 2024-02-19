@@ -13,17 +13,33 @@ const express = require("express");
 
 const app = express();
 
+app.get("/hello/:user", (req, res) => {
+  console.log(typeof req.params.user);
+  res.send(`hola ${req.params.user.toUpperCase()}`);
+});
 
-app.use(express.text())
-app.use(express.json())
-app.use(express.urlencoded({extended:false}))
+app.get("/add/:x/:y", (req, res) => {
+  const { x, y } = req.params;
+
+  const result = parseInt(x) + parseInt(y);
+  res.send(`Result:${result}`);
+});
+
+app.get("/users/:username/photo", (req, res) => {
+  if (req.params.username == "matias") {
+    return res.sendFile("./pikachu.png", {
+      root: __dirname,
+    });
+  }
+
+  res.send("El usuario no tiene accceso")
+
+});
 
 
-app.post("/user", (req, res)=>{
-  console.log(req.body)
-  res.send("Nuevo usuario creado")
+app.get("/nombre/:nombre/age/:age", (req,res)=>{
+  res.send(`El usuario ${req.params.nombre} tiene ${req.params.age} años`)
 })
 
 app.listen(3000);
 console.log("server on port 3000");
-

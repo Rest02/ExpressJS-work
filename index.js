@@ -13,8 +13,16 @@ const express = require("express");
 
 const app = express();
 
+app.get("/search", (req, res)=>{
+  if(req.query.q === "javascript books"){
+    res.send("lista de lbros de javascript")
+  }else{
+    res.send("pagina normal")
+  }
+})
+
+
 app.get("/hello/:user", (req, res) => {
-  console.log(typeof req.params.user);
   res.send(`hola ${req.params.user.toUpperCase()}`);
 });
 

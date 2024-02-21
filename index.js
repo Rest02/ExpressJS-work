@@ -13,6 +13,10 @@ const express = require("express");
 
 const app = express();
 
+app.all("/info" , (req, res)=>{
+  res.send("server info")
+})
+
 app.get("/search", (req, res)=>{
   if(req.query.q === "javascript books"){
     res.send("lista de lbros de javascript")

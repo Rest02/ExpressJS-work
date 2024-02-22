@@ -13,44 +13,17 @@ const express = require("express");
 
 const app = express();
 
-app.all("/info" , (req, res)=>{
-  res.send("server info")
+app.use((req,res, next)=>{
+  console.log(`Route : ${req.url} Metodo: ${req.method}`)
+  next()
 })
 
-app.get("/search", (req, res)=>{
-  if(req.query.q === "javascript books"){
-    res.send("lista de lbros de javascript")
-  }else{
-    res.send("pagina normal")
-  }
+app.get("/profile", (req, res)=>{
+  res.send("profile page")
 })
 
-
-app.get("/hello/:user", (req, res) => {
-  res.send(`hola ${req.params.user.toUpperCase()}`);
-});
-
-app.get("/add/:x/:y", (req, res) => {
-  const { x, y } = req.params;
-
-  const result = parseInt(x) + parseInt(y);
-  res.send(`Result:${result}`);
-});
-
-app.get("/users/:username/photo", (req, res) => {
-  if (req.params.username == "matias") {
-    return res.sendFile("./pikachu.png", {
-      root: __dirname,
-    });
-  }
-
-  res.send("El usuario no tiene accceso")
-
-});
-
-
-app.get("/nombre/:nombre/age/:age", (req,res)=>{
-  res.send(`El usuario ${req.params.nombre} tiene ${req.params.age} años`)
+app.all("/about", (req , res)=> {
+  res.send("about page")
 })
 
 app.listen(3000);

@@ -12,7 +12,15 @@
 const express = require("express");
 const morgan = require("morgan")
 
+
+
+
+
 const app = express();
+
+app.set("case sensitive routing", true)
+app.set("appName", "Express Course")
+app.set("port", 3000)
 
 app.use(morgan("dev"))
 
@@ -24,7 +32,9 @@ app.all("/about", (req , res)=> {
   res.send("about page")
 })
 
-
+app.all("/UserName", (req , res)=> {
+  res.send("Username page")
+})
 
 
 app.use((req,res, next)=>{
@@ -40,5 +50,5 @@ app.get("/dashboard" , (req , res)=>{
 })
 
 
-app.listen(3000);
-console.log("server on port 3000");
+app.listen(app.get("port"));
+console.log(`server ${app.get("appName")} on port ${app.get("port")}`);

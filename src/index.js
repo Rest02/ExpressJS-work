@@ -1,6 +1,7 @@
 const express = require("express");
 const morgan = require("morgan");
 const path = require("path");
+require("ejs")
 
 const app = express();
 
@@ -10,6 +11,8 @@ const UserRoutes = require("./routes/users")
 app.set("case sensitive routing", true);
 app.set("appName", "Express Course");
 app.set("port", 3000);
+app.set("view engine", "ejs")
+app.set("views", path.join(__dirname, "views"))
 
 app.use(express.json());
 app.use(morgan("dev"));

@@ -1,14 +1,18 @@
 const { Router } = require("express");
 const router = Router();
 
-router.all("/about", (req, res) => {
-  const title = 30;
+router.get("/", (req, res) => {
+  res.render("index", {
+    title : "Index page"
+  })
+});
 
-  res.render("index", { title });
+router.get("/about", (req, res) => {
+  res.render("about");
 });
 
 router.get("/dashboard", (req, res) => {
-  res.sendFile("Dashboard page");
+  res.render("dashboard");
 });
 
 module.exports = router;
